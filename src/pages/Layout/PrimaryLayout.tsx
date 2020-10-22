@@ -8,7 +8,9 @@ import './PrimaryLayout.less';
 
 const { Sider, Header } = MyLayout;
 
-const PrimaryLayout: React.FC<any> = () => {
+const PrimaryLayout: React.FC<any> = ({
+  children
+}) => {
   const [collapsed, setCollapsed] = useState(store.get('collapsed') || false);
   
   const { username, avatar } = store.get('user') || {};
@@ -38,6 +40,11 @@ const PrimaryLayout: React.FC<any> = () => {
           onCollapseChange={onCollapseChange}
           onSignOut={onSignOut}
         ></Header>
+        <div
+          className="content"
+        >
+          {children}
+        </div>
       </div>
     </Layout>
   </Fragment>;

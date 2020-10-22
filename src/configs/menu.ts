@@ -1,4 +1,5 @@
 import { IMenuItem } from "@/components/Layout/Menu";
+import Home from "@/pages/Home";
 
 export interface IMenuMap {
   [key: string]: IMenuItem;
@@ -6,17 +7,10 @@ export interface IMenuMap {
 
 const menuList: Array<IMenuItem> = [
   {
-    key: 'order-manager',
-    title: '订单管理',
-    path: '/order-manager',
-    children: [
-      // {
-      //   key: 'order-list',
-      //   title: '订单列表',
-      //   path: '/order-manager/order-list',
-      //   component: OrderList
-      // }
-    ]
+    key: 'home',
+    title: '首页',
+    path: '/home',
+    component: Home
   }
 ];
 
