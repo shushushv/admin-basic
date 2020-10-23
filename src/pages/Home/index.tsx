@@ -1,6 +1,9 @@
 import React from 'react';
 import STable from '@/components/STable';
 import { ColumnsType } from 'antd/lib/table';
+import { Select } from 'antd';
+
+const { Option } = Select;
 
 const Home: React.FC = () => {
   const columns: ColumnsType<any> = [
@@ -10,8 +13,9 @@ const Home: React.FC = () => {
   ];
   
   const filters = [
-    { key: 'name', placeholder: '按名称查找' },
-    { key: 'age', placeholder: '按年龄查找' },
+    { key: 'name', title: '名称', placeholder: '按名称查找' },
+    { key: 'age', title: '年龄', placeholder: '按年龄查找' },
+    { key: 'gender', title: '性别', placeholder: '按年龄查找', tag: Select, render: <Option value="男">男</Option> },
   ];
 
   const handlers = [
