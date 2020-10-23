@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, Space, Button } from 'antd';
-import 'TableFilter.less';
+import './TableFilter.less';
+import { debounce } from 'lodash';
 
 export interface ITableFilterItem {
   key: string;
@@ -10,6 +11,7 @@ export interface ITableFilterItem {
 
 export interface ITableHandlerItem {
   key: string;
+  title: string;
   tag?: any;
   [name: string]: any;
 }
@@ -25,6 +27,8 @@ const TableFilter: React.FC<ITableFilterProps> = ({
   handlers,
   onChange
 }) => {
+  const searchDebounce = debounce(onChange, 500);
+
   return <div className="table-filter">
     <Space>
       {
@@ -32,7 +36,7 @@ const TableFilter: React.FC<ITableFilterProps> = ({
           tag: Tag = Input,
           ...props
         }) => (
-          <Tag {...props} onChange={(e: any) => onChange({ [props.key]: e.target.value })}></Tag>
+          <Tag {...props} onChange={(e: any) => searchDebounce({ [props.key]: e.target.value })}></Tag>
         ))
       }
     </Space>
@@ -42,7 +46,7 @@ const TableFilter: React.FC<ITableFilterProps> = ({
           title,
           ...props
         }) => (
-          <Button {...props}>{title}</Button>
+          <Button type="primary" {...props}>{title}</Button>
         ))
       }
     </Space>
